@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   defense: 0
-  attackDamage: 25
+  attackDamage: 50
   attackSpeed: 0
   attackRadius: 0
   movementSpeed: 0
   currentHealth: 100
+  bounty: 0

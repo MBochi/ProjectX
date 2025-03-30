@@ -13,4 +13,6 @@ public class StatsSO : ScriptableObject
 
     public int movementSpeed;
     public int currentHealth;
+
+    public int bounty;
 }

@@ -25,7 +25,6 @@ public class PlayerCombat : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-
     void Update()
     {
         Attack(); 

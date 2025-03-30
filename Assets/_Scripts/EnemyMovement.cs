@@ -19,7 +19,6 @@ public class EnemyMovement : MonoBehaviour
 
     private KnockBack kb;
 
-
     void Start()
     {
         player = GameObject.Find("Player");

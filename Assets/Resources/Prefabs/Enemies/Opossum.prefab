@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8819107823759520492}
   - component: {fileID: 8288151237404286347}
   - component: {fileID: 3074642300325941194}
+  - component: {fileID: -8986321231923146828}
   m_Layer: 6
   m_Name: Opossum
   m_TagString: Enemy
@@ -246,3 +247,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0110a829bb999649a2c222a421d7dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8986321231923146828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809525511105544936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6140a92739adfe24bbbea7b7b6d45774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 6740911154768900530, guid: d9efbd49772113b4583610ddc01bfec0, type: 3}

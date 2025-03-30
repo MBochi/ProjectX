@@ -9,6 +9,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private Rigidbody2D rb;
     private KnockBack kb;
     private ImpactFlash flash;
+    private DropCoins dropCoins;
     private SpriteRenderer spriteRenderer;
     private Stats stats;
     private float flashDuration = 0.1f;
@@ -19,12 +20,8 @@ public class EnemyController : MonoBehaviour, IDamageable
         kb = GetComponent<KnockBack>();
         stats = GetComponent<Stats>();
         flash = GetComponent<ImpactFlash>();
+        dropCoins = GetComponent<DropCoins>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    void Update()
-    {
-
     }
 
     public void OnHit(int damage, Vector2 direction, Vector2 knockback) 
@@ -38,7 +35,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     { 
     }
     public void OnObjectDestroyed() 
-    { 
+    {
+        dropCoins.Drop(stats.GetBounty());
+        GameObject.Destroy(gameObject);
     }
     private void TakeDamage(int damage)
     {
@@ -46,8 +45,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         if (stats.GetCurrentHealth() <= 0) 
         {
-            GameObject.Destroy(gameObject);
-            Debug.Log("GameObject destroyed: " + gameObject.name);
+            OnObjectDestroyed();
         }
     }
 

@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        List<GameObject> list = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs"));
+        List<GameObject> list = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Enemies"));
         int randomEntry = rnd.Next(list.Count);
         
         isSpawning = !isSpawning;

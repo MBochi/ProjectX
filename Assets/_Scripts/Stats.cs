@@ -70,6 +70,15 @@ public class Stats : MonoBehaviour
     {
         statsSO.attackDamage = attackDamage;
     }
+
+    public int GetBounty()
+    {
+        return statsSO.bounty;
+    }
+    public void SetBounty(int bounty)
+    {
+        statsSO.bounty = bounty;
+    }
     #endregion
 }
 

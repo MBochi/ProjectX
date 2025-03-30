@@ -19,3 +19,4 @@ MonoBehaviour:
   attackRadius: 0
   movementSpeed: 10
   currentHealth: 100
+  bounty: 1
