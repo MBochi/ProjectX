@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private LayerMask enemyLayers;
+    [SerializeField] private LayerMask enemyLayer;
     private Stats stats;
     // TODO AttackRange in stats
     private float attackRange = 1f;
@@ -15,7 +15,7 @@ public class PlayerCombat : MonoBehaviour
     private Transform attackPoint;
     private bool canAttack = true;
     private float attackCooldown = 0.5f;
-    [SerializeField] private float knockbackForce = 1f;
+    private float knockbackForce = 0.5f;
     private float animationWindupTime = 0.5f;
 
     void Start()
@@ -48,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.gameObject.CompareTag("Enemy"))

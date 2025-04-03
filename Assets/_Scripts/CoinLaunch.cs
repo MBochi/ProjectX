@@ -8,14 +8,18 @@ public class CoinLaunch : MonoBehaviour
 
     private float upperPowerThreshold = 12f;
     private float lowerPowerThreshold = 0f;
+    [SerializeField] private float despawnTime = 10f;
+    SpriteRenderer sprite;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
     void Start()
     {
         LaunchCoin();
+        StartCoroutine(DespawnCoin(despawnTime));
     }
 
     public void LaunchCoin()
@@ -27,5 +31,14 @@ public class CoinLaunch : MonoBehaviour
         Vector2 YForce = Vector2.up * randomXForce;
 
         rb.AddForce(new Vector2(XForce.x, YForce.y), ForceMode2D.Impulse);
+    }
+
+    private IEnumerator DespawnCoin(float despawnTime)
+    {
+        float halfDespawnTime = despawnTime / 2;
+        yield return new WaitForSeconds(halfDespawnTime);
+        // TODO - Flash Sprite
+        yield return new WaitForSeconds(halfDespawnTime);
+        Destroy(gameObject);
     }
 }

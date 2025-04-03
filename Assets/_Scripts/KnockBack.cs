@@ -10,6 +10,9 @@ public class KnockBack : MonoBehaviour
     private float constForce = 1f;
     private float knockBackjumpForce;
 
+    private float upperPowerThreshold = 1.5f;
+    private float lowerPowerThreshold = 0.75f;
+
     private Rigidbody2D rb;
     private Coroutine knockBackCoroutine;
     public bool IsBeingKnockedBack { get; private set; }
@@ -29,7 +32,7 @@ public class KnockBack : MonoBehaviour
 
         _hitForce = hitDirection * hitDirectionForce;
         _constantForce = constantForceDirection * constForce;
-        knockBackjumpForce = Random.Range(0.75f, 1.5f);
+        knockBackjumpForce = Random.Range(lowerPowerThreshold, upperPowerThreshold);
 
         float _elapsedTime = 0f;
         while (_elapsedTime < knockBackForceTime)
