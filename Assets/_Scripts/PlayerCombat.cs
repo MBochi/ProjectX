@@ -21,18 +21,12 @@ public class PlayerCombat : MonoBehaviour
     void Start()
     {
         stats = GetComponent<Stats>();
-        attackPoint = GameObject.Find("AttackPoint").transform;
+        attackPoint = gameObject.transform.GetChild(0).gameObject.transform;
         animator = GetComponent<Animator>();
     }
-
-    void Update()
+    public void Attack()
     {
-        Attack(); 
-    }
-
-    private void Attack()
-    {
-        if (Input.GetKey(KeyCode.Mouse0) && canAttack)
+        if (canAttack)
         {
             animator.SetTrigger("Attack");
             canAttack = false;
@@ -41,34 +35,26 @@ public class PlayerCombat : MonoBehaviour
 
         }
     }
-
-    // Align Animation and Hit Detection
-    // TODO: Can be deleted if Sprite and Weapon are seperated
-    IEnumerator AnimationCooldownTimer(float time)
+    IEnumerator AnimationCooldownTimer(float animationWindupTime)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(animationWindupTime);
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-        foreach (Collider2D enemy in hitEnemies)
+        Collider2D[] hitDetection = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+        foreach (Collider2D collider in hitDetection)
         {
-            if (enemy.gameObject.CompareTag("Enemy"))
+            if (collider.gameObject.CompareTag("Enemy"))
             {
-                IDamageable damageable = enemy.GetComponent<IDamageable>();
+                IDamageable damageable = collider.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    Vector2 direction = (enemy.transform.position - transform.position).normalized;
+                    Vector2 direction = (collider.transform.position - transform.position).normalized;
                     Vector2 knockback = direction * knockbackForce;
 
                     damageable.OnHit(stats.GetAttackDamage(), direction, knockback);
                 }
             }
         }
-        StartCoroutine(AttackCooldownTimer(attackCooldown));
-    }
-
-    IEnumerator AttackCooldownTimer(float time)
-    {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
 }

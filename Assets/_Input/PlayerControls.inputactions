@@ -6,9 +6,18 @@
             "id": "079b615c-87b4-490d-8049-9779ca6e7b9f",
             "actions": [
                 {
-                    "name": "Hold",
+                    "name": "Collect",
                     "type": "Button",
                     "id": "4f2442a1-c65a-4761-bbd0-e1a93570a516",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "97d5b26f-bd85-4656-a6ca-65e877b905d1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -23,7 +32,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Hold",
+                    "action": "Collect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "397e90ea-7e8f-421b-ad00-be753a6ef8eb",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

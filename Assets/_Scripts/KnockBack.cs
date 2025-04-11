@@ -21,6 +21,10 @@ public class KnockBack : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    public void CallKnockBack(Vector2 hitDirection, Vector2 constantForceDirection, float inputDirection)
+    {
+        knockBackCoroutine = StartCoroutine(KnockBackAction(hitDirection, constantForceDirection, inputDirection));
+    }
     public IEnumerator KnockBackAction(Vector2 hitDirection, Vector2 constantForceDirection, float inputDirection)
     {
         IsBeingKnockedBack = true;
@@ -57,10 +61,5 @@ public class KnockBack : MonoBehaviour
         }
         yield return new WaitForSeconds(knockBackTime);
         IsBeingKnockedBack = false;
-    }
-
-    public void CallKnockBack(Vector2 hitDirection, Vector2 constantForceDirection, float inputDirection)
-    {
-        knockBackCoroutine = StartCoroutine(KnockBackAction(hitDirection, constantForceDirection, inputDirection));
     }
 }

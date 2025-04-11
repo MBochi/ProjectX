@@ -9,12 +9,10 @@ public class CoinLaunch : MonoBehaviour
     private float upperPowerThreshold = 12f;
     private float lowerPowerThreshold = 0f;
     [SerializeField] private float despawnTime = 10f;
-    SpriteRenderer sprite;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
     }
     void Start()
     {

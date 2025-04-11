@@ -7,10 +7,11 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     private Camera _mainCamera;
-    private bool isHolding = false;
+    private bool isCollecting = false;
+    private bool isAttacking = false;
     private int coinCounter = 0;
     private TextMeshProUGUI _textMeshPro;
-
+    private PlayerCombat playerCombat;
 
     [SerializeField] private GameObject collectable;
 
@@ -18,20 +19,24 @@ public class InputHandler : MonoBehaviour
     {
         _mainCamera = Camera.main;
         _textMeshPro = GameObject.Find("CounterText").GetComponent<TextMeshProUGUI>();
+        playerCombat = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
     }
-
     void Update()
     {
-        if (isHolding) 
+        if (isCollecting) 
         {
             Collect(collectable);
         }
-    }
 
-    public void OnHold(InputAction.CallbackContext context)
+        if (isAttacking)
+        {
+            playerCombat.Attack();
+        }
+    }
+    public void OnCollect(InputAction.CallbackContext context)
     {
-        if (context.started) isHolding = true;
-        else if (context.canceled) isHolding = false;
+        if (context.started) isCollecting = true;
+        else if (context.canceled) isCollecting = false;
     }
 
     public void Collect(GameObject collectable)
@@ -39,13 +44,16 @@ public class InputHandler : MonoBehaviour
         var rayHit = Physics2D.GetRayIntersection(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()));
         if (!rayHit.collider) return;
 
-        Debug.Log(rayHit.collider.gameObject.name);
-
         if (rayHit.collider.gameObject.name.Contains(collectable.name))
         {
             coinCounter++;
             _textMeshPro.text = coinCounter.ToString();
             Destroy(rayHit.collider.gameObject);
         }
+    }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started) isAttacking = true;
+        else if (context.canceled) isAttacking = false;
     }
 }
