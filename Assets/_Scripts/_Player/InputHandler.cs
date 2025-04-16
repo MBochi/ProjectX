@@ -11,7 +11,7 @@ public class InputHandler : MonoBehaviour
     private bool isAttacking = false;
     private int coinCounter = 0;
     private TextMeshProUGUI _textMeshPro;
-    private PlayerCombat playerCombat;
+    private PlayerController playerController;
 
     [SerializeField] private GameObject collectable;
 
@@ -19,7 +19,7 @@ public class InputHandler : MonoBehaviour
     {
         _mainCamera = Camera.main;
         _textMeshPro = GameObject.Find("CounterText").GetComponent<TextMeshProUGUI>();
-        playerCombat = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
     }
     void Update()
     {
@@ -30,9 +30,15 @@ public class InputHandler : MonoBehaviour
 
         if (isAttacking)
         {
-            playerCombat.Attack();
+            playerController.Attack();
         }
     }
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started) isAttacking = true;
+        else if (context.canceled) isAttacking = false;
+    }
+
     public void OnCollect(InputAction.CallbackContext context)
     {
         if (context.started) isCollecting = true;
@@ -50,10 +56,5 @@ public class InputHandler : MonoBehaviour
             _textMeshPro.text = coinCounter.ToString();
             Destroy(rayHit.collider.gameObject);
         }
-    }
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.started) isAttacking = true;
-        else if (context.canceled) isAttacking = false;
     }
 }

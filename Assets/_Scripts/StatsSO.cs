@@ -6,13 +6,13 @@ using UnityEngine;
 public class StatsSO : ScriptableObject
 { 
     public int maxHealth;
+    public int currentHealth;
     public int defense;
     public int attackDamage;
     public int attackSpeed;
     public int attackRadius;
 
     public int movementSpeed;
-    public int currentHealth;
 
     public int bounty;
 }

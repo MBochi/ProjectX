@@ -9,14 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a75bc9183760534e9e629386b647573, type: 3}
-  m_Name: Pig
+  m_Script: {fileID: 11500000, guid: 7405ee4b0ec11eb44a27973c13c217ad, type: 3}
+  m_Name: Potion
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  defense: 0
-  attackDamage: 1
-  attackSpeed: 0
-  attackRadius: 0
-  movementSpeed: 5
-  currentHealth: 200
-  bounty: 5
+  itemName: Potion
+  statToChange: 1
+  amountToChangeStat: 5

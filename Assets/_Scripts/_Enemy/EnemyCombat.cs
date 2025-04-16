@@ -4,8 +4,6 @@ using UnityEngine;
 public class EnemyCombat : MonoBehaviour
 {
     [SerializeField] private LayerMask playerLayer;
-    private Stats stats;
-    // TODO AttackRange in stats
     private float attackRange = 1f;
     private Transform attackPoint;
     private bool canAttack = true;
@@ -14,19 +12,19 @@ public class EnemyCombat : MonoBehaviour
 
     void Start()
     {
-        stats = GetComponent<Stats>();
         attackPoint = gameObject.transform.GetChild(0).gameObject.transform;
     }
-    public void Attack()
+
+    public void Attack(int attackDamage)
     {
         if (canAttack)
         {
             canAttack = false;
-            StartCoroutine(AnimationCooldownTimer());
+            StartCoroutine(AnimationCooldownTimer(attackDamage));
         }
     }
 
-    IEnumerator AnimationCooldownTimer()
+    IEnumerator AnimationCooldownTimer(int attackDamage)
     {
         Collider2D[] hitDetection = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayer);
         foreach (Collider2D collider in hitDetection)
@@ -39,7 +37,7 @@ public class EnemyCombat : MonoBehaviour
                     Vector2 direction = (collider.transform.position - transform.position).normalized;
                     Vector2 knockback = direction * knockbackForce;
 
-                    damageable.OnHit(stats.GetAttackDamage());
+                    damageable.OnHit(attackDamage);
                 }
             }
         }

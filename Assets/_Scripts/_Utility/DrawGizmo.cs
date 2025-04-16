@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DrawGizmo : MonoBehaviour
@@ -8,19 +6,6 @@ public class DrawGizmo : MonoBehaviour
     public Transform attackPoint;
     public bool showGizmo = false;
   
-    
-    void Start()
-    {
-
-    }
-
-    
-    void Update()
-    {
-
-    }
-
-
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

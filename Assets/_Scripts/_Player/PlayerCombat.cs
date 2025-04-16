@@ -1,38 +1,33 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private LayerMask enemyLayer;
-    private Stats stats;
-    // TODO AttackRange in stats
-    private float attackRange = 1f;
+    private Stats playerStats;
     private Animator animator;
+    private float attackRange = 1f;
+    
     private Transform attackPoint;
-    private bool canAttack = true;
+    private bool isAttacking = false;
     private float attackCooldown = 0.5f;
     private float knockbackForce = 0.5f;
     private float animationWindupTime = 0.5f;
 
     void Start()
     {
-        stats = GetComponent<Stats>();
         attackPoint = gameObject.transform.GetChild(0).gameObject.transform;
+        playerStats = GetComponent<Stats>();
         animator = GetComponent<Animator>();
     }
     public void Attack()
     {
-        if (canAttack)
+        if (!isAttacking)
         {
             animator.SetTrigger("Attack");
-            canAttack = false;
+            isAttacking = true;
 
             StartCoroutine(AnimationCooldownTimer(animationWindupTime));
-
         }
     }
     IEnumerator AnimationCooldownTimer(float animationWindupTime)
@@ -50,11 +45,11 @@ public class PlayerCombat : MonoBehaviour
                     Vector2 direction = (collider.transform.position - transform.position).normalized;
                     Vector2 knockback = direction * knockbackForce;
 
-                    damageable.OnHit(stats.GetAttackDamage(), direction, knockback);
+                    damageable.OnHit(playerStats.attackDamage, direction, knockback);
                 }
             }
         }
         yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+        isAttacking = false;
     }
 }
