@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] private string itemName;
-    [SerializeField] private int quantity;
-    [SerializeField] private Sprite sprite;
-    [SerializeField] [TextArea] private string itemDesciption;
-
+    [SerializeField] private ItemSO item;
     private InventoryManager inventoryManager;
 
     void Start()
@@ -20,16 +16,15 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            int leftOverItems = inventoryManager.AddItem(itemName, quantity, sprite, itemDesciption);
+            int leftOverItems = inventoryManager.AddItem(item.itemName, item.quantity, item.sprite, item.itemDesciption);
             if (leftOverItems <= 0)
             {
                 Destroy(gameObject);
             }
             else 
             {
-                quantity = leftOverItems;
-            }
-                
+                item.quantity = leftOverItems;
+            }             
         }
     }
 

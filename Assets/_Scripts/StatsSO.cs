@@ -11,8 +11,6 @@ public class StatsSO : ScriptableObject
     public int attackDamage;
     public int attackSpeed;
     public int attackRadius;
-
     public int movementSpeed;
-
     public int bounty;
 }

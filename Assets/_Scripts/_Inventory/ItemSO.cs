@@ -1,9 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Items")]
+[CreateAssetMenu(fileName = "New Item", menuName = "Item")]
 public class ItemSO : ScriptableObject
 {
     public string itemName;
+    public int quantity;
+    public Sprite sprite;
+    [TextArea] public string itemDesciption;
+
     public StatToChange statToChange = new StatToChange();
     public int amountToChangeStat;
 

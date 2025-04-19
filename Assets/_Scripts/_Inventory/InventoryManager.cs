@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -6,26 +7,29 @@ public class InventoryManager : MonoBehaviour
     private bool menuActive = false;
 
     public ItemSlot[] itemSlots;
-
     public ItemSO[] itemSOs;
 
-    void Update()
+    public void OpenAndCloseInventory(bool openInventory)
     {
-        if (Input.GetButtonDown("Inventory") && menuActive)
+        if (SceneManager.GetSceneByName("HUB").isLoaded)
         {
-            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = true;
-            Time.timeScale = 1f;
-            InventoryMenu.SetActive(false);
-            menuActive = !menuActive;
-        }
-        else if (Input.GetButtonDown("Inventory") && !menuActive)
-        {
-            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = false;
-            Time.timeScale = 0f;
-            InventoryMenu.SetActive(true);
-            menuActive = !menuActive;
+            if (openInventory && menuActive)
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = true;
+                Time.timeScale = 1f;
+                InventoryMenu.SetActive(false);
+                menuActive = !menuActive;
+            }
+            else if (openInventory && !menuActive)
+            {
+                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = false;
+                Time.timeScale = 0f;
+                InventoryMenu.SetActive(true);
+                menuActive = !menuActive;
+            }
         }
     }
+
     public bool UseItem(string itemName)
     {
         foreach (var itemSO in itemSOs)

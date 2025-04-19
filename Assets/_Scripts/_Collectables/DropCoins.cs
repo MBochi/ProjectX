@@ -10,7 +10,10 @@ public class DropCoins : MonoBehaviour
     {
         for (int i = 0; i < amount; i++) 
         {
-            Instantiate(coinPrefab, this.transform.position, Quaternion.identity);
+            if (Random.Range(0, 2) == 0) // 50% chance for each coin
+            {
+                Instantiate(coinPrefab, this.transform.position, Quaternion.identity);
+            }
         }  
     }
 }

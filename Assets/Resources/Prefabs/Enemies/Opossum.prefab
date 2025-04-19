@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 3106786749075021856}
   - component: {fileID: 7988188461298458325}
   m_Layer: 6
-  m_Name: Opossum
+  m_Name: opossum
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

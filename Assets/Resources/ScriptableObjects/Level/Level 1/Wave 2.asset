@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRate: 1
   enemies:
-  - name: Opossum
+  - name: opossum
     amount: 1
-  - name: Pig
+  - name: pig
     amount: 2

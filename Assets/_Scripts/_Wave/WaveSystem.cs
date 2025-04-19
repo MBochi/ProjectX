@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
+using static UnityEngine.EventSystems.EventTrigger;
 
 [System.Serializable]
 public class Level
@@ -24,20 +24,44 @@ public class WaveSystem : MonoBehaviour
     private List<GameObject> prefabs = null;
     private bool waveIsActive = false;
     private bool waveComplete = false;
+    public bool waveCRRunning = false;
 
     private bool stopSlider = false;
+
+    [SerializeField] private GameObject coinPrefab;
 
     private void Start()
     {
         prefabs = new(Resources.LoadAll<GameObject>("Prefabs/Enemies"));
         currentLevel -= 1;
+        progressbar.minValue = 0f;
+        progressbar.maxValue = startOffset + timeBetweenWaves * levels[currentLevel].waves.Length;
+        SpawnCheckpoints();
+    }
+
+    private void SpawnCheckpoints()
+    {
+        float sliderWidth = progressbar.GetComponent<RectTransform>().sizeDelta.x;
+        float zeroValue = progressbar.transform.position.x + (sliderWidth / 2);
+        float spawnPointIntervall = startOffset + 1;
+
+        foreach (var wave in levels[currentLevel].waves)
+        {
+            float valueToIncrement = spawnPointIntervall / progressbar.maxValue;
+            float newPos = sliderWidth * valueToIncrement;
+            float x = zeroValue - newPos;
+
+            GameObject go = Instantiate(coinPrefab, new Vector3(x, 11, 0), Quaternion.identity);
+            go.transform.SetParent(GameObject.Find("Progressbar").transform, false);
+            spawnPointIntervall += timeBetweenWaves;
+        }
     }
 
     void Update()
     {
         if (!waveIsActive && !waveComplete)
         {
-            StartCoroutine(SpawnEnemy());
+            StartCoroutine(SpawnWaves());
         }
         if (waveComplete)
         {
@@ -50,8 +74,6 @@ public class WaveSystem : MonoBehaviour
     }
     private void Progessbar()
     {
-        progressbar.minValue = 0f;
-        progressbar.maxValue = startOffset + timeBetweenWaves * levels[currentLevel].waves.Length;
         float time = progressbar.minValue + Time.time;
 
         if (progressbar.maxValue <= time)
@@ -63,7 +85,7 @@ public class WaveSystem : MonoBehaviour
             progressbar.value = time;
         }
     }
-    private IEnumerator SpawnEnemy()
+    private IEnumerator SpawnWaves()
     {
         waveIsActive = !waveIsActive;
         int currentWave = 1;
@@ -87,21 +109,32 @@ public class WaveSystem : MonoBehaviour
 
             var shuffle = listEnemies.OrderBy(i => Guid.NewGuid()).ToList();
 
-            foreach (var enemy in shuffle)
+            float timer = Time.deltaTime;
+            for (int i = 0; i < shuffle.Count; i++) 
             {
-                Instantiate(enemy, this.transform.position, Quaternion.identity);
+                Instantiate(shuffle[i], this.transform.position, Quaternion.identity);
+
+                if (i == 0) StartCoroutine(WaveTimer(timeBetweenWaves));
+
                 yield return new WaitForSeconds(wave.spawnRate);
             }
 
-            if (currentWave < levels[currentLevel].waves.Length)
+            while(currentWave < levels[currentLevel].waves.Length)
             {
+                yield return new WaitUntil(() => !waveCRRunning);
                 currentWave++;
-                yield return new WaitForSeconds(timeBetweenWaves);
+                break;
             }
-            
         }
         waveIsActive = !waveIsActive;
         waveComplete = !waveComplete;
+    }
+
+    private IEnumerator WaveTimer(float timeBetweenWaves)
+    {
+        waveCRRunning = true;
+        yield return new WaitForSeconds(timeBetweenWaves);
+        waveCRRunning = false;
     }
 
     private GameObject FindPrefabWithName(string name)

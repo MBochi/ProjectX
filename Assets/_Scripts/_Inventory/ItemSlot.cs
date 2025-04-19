@@ -122,5 +122,18 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         throw new NotImplementedException();
     }
 
-
+    public void UseItemFromGame()
+    {
+        bool usable = inventoryManager.UseItem(itemName);
+        if (usable)
+        {
+            this.quantity -= 1;
+            quantityTxt.text = this.quantity.ToString();
+            
+            if (this.quantity <= 0)
+            {
+                EmptySlot();
+            }
+        }
+    }
 }

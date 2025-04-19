@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 6974909839501329967}
   - component: {fileID: 5508220370975921975}
   m_Layer: 6
-  m_Name: Pig
+  m_Name: pig
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
