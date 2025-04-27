@@ -9,12 +9,10 @@ public class InputHandler : MonoBehaviour
     public bool isCollecting = false;
     public bool isAttacking = false;
     public bool isHealing = false;
-    public bool openInventory = false;
     private TextMeshProUGUI coinCounterText;
     private TextMeshProUGUI potionCounterText;
     private PlayerController playerController;
     private PlayerHealth playerHealth;
-    private PlayerInput playerInput;
     private Stats playerStats;
 
     private StaticInventory staticInventory;
@@ -29,16 +27,15 @@ public class InputHandler : MonoBehaviour
         potionCounterText = GameObject.Find("PotionCounterText").GetComponent<TextMeshProUGUI>();
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-        playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Stats>();
-        staticInventory = GameObject.Find("Canvas").GetComponent<StaticInventory>();
+        staticInventory = GameObject.Find("InventoryCanvas").GetComponent<StaticInventory>();
         try
         {
             inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
         }
         catch 
         {
-            Debug.LogWarning("No GameObject 'InventoryManager' in scene found");
+            Debug.Log("No GameObject 'InventoryManager' in scene found");
         }
     }
 
@@ -69,11 +66,6 @@ public class InputHandler : MonoBehaviour
                     potionCounterText.text = staticInventory.healthPotionAmount.ToString();
                 }
             }
-        }
-
-        if (openInventory)
-        {
-            inventoryManager.OpenAndCloseInventory(openInventory);
         }
     }
     public void OnAttack(InputAction.CallbackContext context)
@@ -109,7 +101,10 @@ public class InputHandler : MonoBehaviour
 
     public void OnInventory(InputAction.CallbackContext context)
     {
-        if (context.started && Input.GetButtonDown("Inventory")) openInventory = true;
-        else if (context.canceled) openInventory = false;
+        if (SceneManager.GetSceneByName("HUB").isLoaded)
+        {
+            if (context.started && Input.GetButtonDown("Inventory")) inventoryManager.Inventory();
+            else if (context.canceled && Input.GetButtonDown("Inventory")) inventoryManager.Inventory(); 
+        } 
     }
 }

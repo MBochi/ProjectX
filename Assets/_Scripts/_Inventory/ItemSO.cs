@@ -4,6 +4,7 @@ using UnityEngine;
 public class ItemSO : ScriptableObject
 {
     public string itemName;
+    public ItemType itemType;
     public int quantity;
     public Sprite sprite;
     [TextArea] public string itemDesciption;
@@ -34,6 +35,7 @@ public class ItemSO : ScriptableObject
     {
         none,
         health,
+        attack,
         defense
     };
 }

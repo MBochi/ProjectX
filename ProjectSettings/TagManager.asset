@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - NonInteractable
   - Player
-  - 
+  - NPC
   - 
   - 
   - 
@@ -47,14 +47,20 @@ TagManager:
   - name: Enemy
     uniqueID: 2544112129
     locked: 0
+  - name: NPC
+    uniqueID: 2809586839
+    locked: 0
+  - name: ForegroundProps
+    uniqueID: 2541603623
+    locked: 0
   - name: Player
     uniqueID: 2086658671
     locked: 0
-  - name: Foreground
-    uniqueID: 3558069419
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 3558069419
     locked: 0
   - name: UI
     uniqueID: 497636171

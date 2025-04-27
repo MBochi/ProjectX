@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f5998a4b830c9d246a3b836d4b222f39
+guid: bf1f69e064a9e464ead3803a5e778ee0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Healthbar 1_0
+      name: ProgressBar 1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 17
-        width: 16
-        height: 14
+        x: 4
+        y: 22
+        width: 56
+        height: 5
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d218f860f6be3b4ea1626b25bb9651c
-      internalID: 852378041
+      spriteID: 23fb57efb693d7c46817b8dbb6bbc18b
+      internalID: 1558359684
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Healthbar 1_1
+      name: ProgressBar 1_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 4
-        width: 85
-        height: 10
+        x: 3
+        y: 3
+        width: 11
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aeb608305c94d554bb719d2551e7b553
-      internalID: 1036941013
+      spriteID: ea1927e6ee16bb84aab1032a11be4727
+      internalID: -1547600421
       vertices: []
       indices: 
       edges: []
@@ -162,8 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Healthbar 1_0: 852378041
-      Healthbar 1_1: 1036941013
+      ProgressBar 1_0: 1558359684
+      ProgressBar 1_1: -1547600421
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

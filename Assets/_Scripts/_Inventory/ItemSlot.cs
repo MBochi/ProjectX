@@ -13,6 +13,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public bool isFull = false;
     public string itemDescription;
     public Sprite emptySprite;
+    public ItemType itemType;
 
     [SerializeField] private int maxNumberOfItems;
 
@@ -21,10 +22,11 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image itemImage;
 
     // Item description slot
-    public Image itemDescriptionImage;
     public TMP_Text itemDescriptionNameText;
     public TMP_Text itemDescriptionText;
 
+    // Equipment Slots
+    [SerializeField] private EquipmentSlot weaponSlot, shieldSlot;
 
     public GameObject selectedPanel;
     public bool itemSelected = false;
@@ -35,19 +37,27 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
     }
-    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDesciption)
+    public int AddItem(string itemName, int quantity, Sprite itemSprite, string itemDesciption, ItemType itemType)
     {
         if (isFull)
         {
             return quantity;
         }
+
+        return itemType == ItemType.collectable ? AddCollectableToSlot(itemName, quantity, itemSprite, itemDesciption, itemType) : AddEquipmentToSlot(itemName, quantity, itemSprite, itemDesciption, itemType);
+    }
+
+    private int AddCollectableToSlot(string itemName, int quantity, Sprite itemSprite, string itemDesciption, ItemType itemType)
+    {
         this.itemName = itemName;
+        this.itemType = itemType;
         this.itemSprite = itemSprite;
-        itemImage.sprite = itemSprite;
         this.itemDescription = itemDesciption;
+        itemImage.sprite = itemSprite;
+        itemImage.enabled = true;
 
         this.quantity += quantity;
-        if(this.quantity >= maxNumberOfItems)
+        if (this.quantity >= maxNumberOfItems)
         {
             quantityTxt.text = maxNumberOfItems.ToString();
             quantityTxt.enabled = true;
@@ -63,17 +73,25 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         return 0;
     }
 
+    private int AddEquipmentToSlot(string itemName, int quantity, Sprite itemSprite, string itemDesciption, ItemType itemType)
+    {
+        this.itemName = itemName;
+        this.itemType = itemType;
+        this.itemSprite = itemSprite;
+        this.itemDescription = itemDesciption;
+        itemImage.sprite = itemSprite;
+        itemImage.enabled = true;
+
+        this.quantity = 1;
+        isFull = true;
+
+        return 0;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            OnLeftClick();
-        }
-
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            OnRightClick();
-        }
+        if (eventData.button == PointerEventData.InputButton.Left) OnLeftClick();
+        if (eventData.button == PointerEventData.InputButton.Right) OnRightClick();
     }
     private void OnLeftClick()
     {
@@ -98,12 +116,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
             itemDescriptionNameText.text = itemName;
             itemDescriptionText.text = itemDescription;
-            itemDescriptionImage.sprite = itemSprite;
-
-            if (itemDescriptionImage.sprite == null)
-            {
-                itemDescriptionImage.sprite = emptySprite;
-            }
         }
     }
 
@@ -111,15 +123,33 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         quantityTxt.enabled = false;
         itemImage.sprite = emptySprite;
+        itemImage.enabled = false;
 
         itemDescriptionNameText.text = "";
         itemDescriptionText.text = "";
-        itemDescriptionImage.sprite = emptySprite;
     }
 
     private void OnRightClick()
     {
-        throw new NotImplementedException();
+        if (itemSelected)
+        {
+            EquipGear();
+        }
+    }
+
+    private void EquipGear()
+    {
+        if (itemType == ItemType.weapon) 
+        {
+            weaponSlot.EquipGear(itemSprite, itemName, itemDescription);
+            EmptySlot();
+        }
+            
+        if (itemType == ItemType.shield) 
+        {
+            weaponSlot.EquipGear(itemSprite, itemName, itemDescription);
+            EmptySlot();
+        }
     }
 
     public void UseItemFromGame()

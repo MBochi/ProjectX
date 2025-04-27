@@ -1,32 +1,27 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
-    private bool menuActive = false;
 
     public ItemSlot[] itemSlots;
     public ItemSO[] itemSOs;
 
-    public void OpenAndCloseInventory(bool openInventory)
+    public void Inventory()
     {
-        if (SceneManager.GetSceneByName("HUB").isLoaded)
+        if (InventoryMenu.activeSelf)
         {
-            if (openInventory && menuActive)
-            {
-                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = true;
-                Time.timeScale = 1f;
-                InventoryMenu.SetActive(false);
-                menuActive = !menuActive;
-            }
-            else if (openInventory && !menuActive)
-            {
-                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = false;
-                Time.timeScale = 0f;
-                InventoryMenu.SetActive(true);
-                menuActive = !menuActive;
-            }
+            Time.timeScale = 1f;
+            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = true;
+            InventoryMenu.SetActive(false);
+
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = false;
+            DeselectAllSlots();
+            InventoryMenu.SetActive(true);
         }
     }
 
@@ -43,14 +38,14 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    public int AddItem(string itemName, int quantity, Sprite sprite, string itemDesciption)
+    public int AddItem(string itemName, int quantity, Sprite sprite, string itemDesciption, ItemType itemType)
     {
         foreach (var itemSlot in itemSlots)
         {
             if (!itemSlot.isFull && itemSlot.name == itemName || itemSlot.quantity == 0)
             {
-                int leftOverItems = itemSlot.AddItem(itemName, quantity, sprite, itemDesciption);
-                if (leftOverItems > 0) leftOverItems = AddItem(itemName, leftOverItems, sprite, itemDesciption);
+                int leftOverItems = itemSlot.AddItem(itemName, quantity, sprite, itemDesciption, itemType);
+                if (leftOverItems > 0) leftOverItems = AddItem(itemName, leftOverItems, sprite, itemDesciption, itemType);
                 return leftOverItems;
             }
         }
@@ -66,3 +61,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 }
+
+public enum ItemType
+{
+    collectable,
+    weapon,
+    shield,
+    none
+};

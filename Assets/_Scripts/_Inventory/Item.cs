@@ -14,9 +14,9 @@ public class Item : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            int leftOverItems = inventoryManager.AddItem(item.itemName, item.quantity, item.sprite, item.itemDesciption);
+            int leftOverItems = inventoryManager.AddItem(item.itemName, item.quantity, item.sprite, item.itemDesciption, item.itemType);
             if (leftOverItems <= 0)
             {
                 Destroy(gameObject);

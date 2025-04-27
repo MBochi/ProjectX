@@ -38,7 +38,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1342035284294278731}
@@ -155,18 +155,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030699283, y: -0.035014972}
+  m_Offset: {x: -0.15529943, y: -0.18212606}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.36, y: 0.28}
+    oldSize: {x: 2.25, y: 1.75}
     newSize: {x: 0.36, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25562266, y: 0.17876539}
+  m_Size: {x: 1.8009248, y: 1.3504951}
   m_EdgeRadius: 0
 --- !u!95 &1415417827973811395
 Animator:
@@ -253,6 +253,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsSO: {fileID: 11400000, guid: 0bb7dc98db0eba94995c1460a0429f70, type: 2}
+  maxHealth: 0
+  currentHealth: 0
+  defense: 0
+  attackDamage: 0
+  attackSpeed: 0
+  attackRadius: 0
+  movementSpeed: 0
+  bounty: 0
 --- !u!114 &4266544208743371265
 MonoBehaviour:
   m_ObjectHideFlags: 0

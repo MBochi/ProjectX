@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
+
 
 [System.Serializable]
 public class Level
@@ -29,9 +29,13 @@ public class WaveSystem : MonoBehaviour
     private bool stopSlider = false;
 
     [SerializeField] private GameObject coinPrefab;
+    private TextMeshProUGUI coinCounterText;
+    [SerializeField] private StaticInventoryData staticInventoryData;
 
     private void Start()
     {
+        coinCounterText = GameObject.Find("CoinCounterText").GetComponent<TextMeshProUGUI>();
+        coinCounterText.text = staticInventoryData.coinAmount.ToString();
         prefabs = new(Resources.LoadAll<GameObject>("Prefabs/Enemies"));
         currentLevel -= 1;
         progressbar.minValue = 0f;
@@ -68,6 +72,8 @@ public class WaveSystem : MonoBehaviour
             if (CheckIfAllEnemiesKilledAndItemsCollected())
             {
                 Debug.Log("Wave Complete");
+                // UI Popup
+                staticInventoryData.coinAmount = Int32.Parse(coinCounterText.text);
             }  
         }
         Progessbar();

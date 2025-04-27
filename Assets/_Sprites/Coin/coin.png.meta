@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf1f69e064a9e464ead3803a5e778ee0
+guid: 4de1bc1687086de4da144963df0b3b70
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ProgressBar 1_0
+      name: coin_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 22
-        width: 56
-        height: 5
+        x: 3
+        y: 0
+        width: 10
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23fb57efb693d7c46817b8dbb6bbc18b
-      internalID: 1558359684
+      spriteID: b3c2cfabb28d95f45888ff4d2b4583c7
+      internalID: 1181122815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProgressBar 1_1
+      name: coin_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 11
-        height: 12
+        x: 19
+        y: 0
+        width: 10
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea1927e6ee16bb84aab1032a11be4727
-      internalID: -1547600421
+      spriteID: 4593389b090c0454085bd7ceed7e67b2
+      internalID: -1441365846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin_2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 0
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99dee518a99b2244a1b9994cbbba9d1
+      internalID: 902703734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dffb7bc887c5894bb8ec0ed18e1bd30
+      internalID: -1521018356
       vertices: []
       indices: 
       edges: []
@@ -162,8 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ProgressBar 1_0: 1558359684
-      ProgressBar 1_1: -1547600421
+      coin_0: 1181122815
+      coin_1: -1441365846
+      coin_2: 902703734
+      coin_3: -1521018356
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

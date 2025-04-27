@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b4bfffd6ed8ffde49b19c29a66538681
+guid: d0caba36426676a4b9fd3a951d348923
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coin_flipped_0
+      name: Kartoffel_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 0
         y: 0
-        width: 10
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ee78f66b0e0f9342b5d77cb9ca8fb5d
-      internalID: 1344988144
+      spriteID: 9a178b9fe4eb259408c0f9e5cac380e1
+      internalID: 1923408959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: coin_flipped_1
+      name: Kartoffel_1
       rect:
         serializedVersion: 2
-        x: 19
+        x: 32
         y: 0
-        width: 10
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8ba14f5b3692af42b17103fedac60ff
-      internalID: -535805188
+      spriteID: 64190623a6ae20c448aca378ef737013
+      internalID: 817276206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: coin_flipped_2
+      name: Kartoffel_2
       rect:
         serializedVersion: 2
-        x: 35
+        x: 64
         y: 0
-        width: 10
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81b6931d6215cb443a14e5e323a4dd97
-      internalID: 539985235
+      spriteID: dfcdc34b750f4c649b3a4da84aa6012c
+      internalID: 905466855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: coin_flipped_3
+      name: Kartoffel_3
       rect:
         serializedVersion: 2
-        x: 51
+        x: 96
         y: 0
-        width: 10
-        height: 16
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +187,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bf0e5905a2647a4b979bbe14371fc42
-      internalID: 2005662892
+      spriteID: f18e0e44f10bd6448a131690575ea3ae
+      internalID: 96287441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kartoffel_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26918142686e7b946813c6a996a773b1
+      internalID: -1284400597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kartoffel_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819d947a71c311f42b0493959f49bcc2
+      internalID: -2061926556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kartoffel_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9326bdb992c74f499773cd070b8fde1
+      internalID: -1025721137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kartoffel_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae8b4cb6530937f40aec5d96a2f1e13f
+      internalID: 350617829
       vertices: []
       indices: 
       edges: []
@@ -204,10 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      coin_flipped_0: 1344988144
-      coin_flipped_1: -535805188
-      coin_flipped_2: 539985235
-      coin_flipped_3: 2005662892
+      Kartoffel_0: 1923408959
+      Kartoffel_1: 817276206
+      Kartoffel_2: 905466855
+      Kartoffel_3: 96287441
+      Kartoffel_4: -1284400597
+      Kartoffel_5: -2061926556
+      Kartoffel_6: -1025721137
+      Kartoffel_7: 350617829
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
