@@ -9,8 +9,6 @@ public class InputHandler : MonoBehaviour
     public bool isCollecting = false;
     public bool isAttacking = false;
     public bool isHealing = false;
-    private TextMeshProUGUI coinCounterText;
-    private TextMeshProUGUI potionCounterText;
     private PlayerController playerController;
     private PlayerHealth playerHealth;
     private Stats playerStats;
@@ -23,12 +21,10 @@ public class InputHandler : MonoBehaviour
     private void Awake()
     {
         _mainCamera = Camera.main;
-        coinCounterText = GameObject.Find("CoinCounterText").GetComponent<TextMeshProUGUI>();
-        potionCounterText = GameObject.Find("PotionCounterText").GetComponent<TextMeshProUGUI>();
         playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
         playerStats = GameObject.FindWithTag("Player").GetComponent<Stats>();
-        staticInventory = GameObject.Find("InventoryCanvas").GetComponent<StaticInventory>();
+        staticInventory = GameObject.Find("Canvas").GetComponent<StaticInventory>();
         try
         {
             inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
@@ -39,10 +35,6 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        potionCounterText.text = staticInventory.healthPotionAmount.ToString();
-    }
     void Update()
     {
         if (isCollecting) 
@@ -63,7 +55,7 @@ public class InputHandler : MonoBehaviour
                 {
                     playerHealth.Heal(staticInventory.healAmount);
                     staticInventory.healthPotionAmount--;
-                    potionCounterText.text = staticInventory.healthPotionAmount.ToString();
+                    staticInventory.potionCounterText.text = staticInventory.healthPotionAmount.ToString();
                 }
             }
         }
@@ -88,7 +80,7 @@ public class InputHandler : MonoBehaviour
         if (rayHit.collider.gameObject.name.Contains(collectable.name))
         {
             staticInventory.coinAmount++;
-            coinCounterText.text = staticInventory.coinAmount.ToString();
+            staticInventory.coinCounterText.text = staticInventory.coinAmount.ToString();
             Destroy(rayHit.collider.gameObject);
         }
     }

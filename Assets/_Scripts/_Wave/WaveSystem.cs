@@ -29,13 +29,10 @@ public class WaveSystem : MonoBehaviour
     private bool stopSlider = false;
 
     [SerializeField] private GameObject coinPrefab;
-    private TextMeshProUGUI coinCounterText;
-    [SerializeField] private StaticInventoryData staticInventoryData;
+    [SerializeField] private StaticInventory staticInventory;
 
     private void Start()
     {
-        coinCounterText = GameObject.Find("CoinCounterText").GetComponent<TextMeshProUGUI>();
-        coinCounterText.text = staticInventoryData.coinAmount.ToString();
         prefabs = new(Resources.LoadAll<GameObject>("Prefabs/Enemies"));
         currentLevel -= 1;
         progressbar.minValue = 0f;
@@ -73,7 +70,7 @@ public class WaveSystem : MonoBehaviour
             {
                 Debug.Log("Wave Complete");
                 // UI Popup
-                staticInventoryData.coinAmount = Int32.Parse(coinCounterText.text);
+                staticInventory.staticInventoryData.coinAmount = Int32.Parse(staticInventory.coinCounterText.text);
             }  
         }
         Progessbar();

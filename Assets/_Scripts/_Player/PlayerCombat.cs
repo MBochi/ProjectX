@@ -44,8 +44,9 @@ public class PlayerCombat : MonoBehaviour
                 {
                     Vector2 direction = (collider.transform.position - transform.position).normalized;
                     Vector2 knockback = direction * knockbackForce;
+                    
 
-                    damageable.OnHit(playerStats.attackDamage, direction, knockback);
+                    damageable.OnHit(Random.Range(playerStats.minAttackDamage, playerStats.maxAttackDamage), direction, knockback);
                 }
             }
         }

@@ -1,9 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour, IDamageable
@@ -49,7 +44,7 @@ public class EnemyController : MonoBehaviour, IDamageable
             }
             else
             {
-                enemyCombat.Attack(enemyStats.attackDamage);
+                enemyCombat.Attack(Random.Range(enemyStats.minAttackDamage, enemyStats.maxAttackDamage));
                 animator.SetBool("isActive", false);
             }
         }

@@ -1,19 +1,21 @@
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject InventoryMenu;
+    public GameObject EquipmentPanel, ItemInfoPanel, EquipmentInfoPanel, WeaponStatsContainer, ShieldStatsContainer, minAttackDamageTextContainer, minAttackDamageTextSeperatorContainer;
 
     public ItemSlot[] itemSlots;
-    public ItemSO[] itemSOs;
+    public StackableItemData[] consumables;
+    public EquipmentSlot[] equipmentSlots;
 
     public void Inventory()
     {
-        if (InventoryMenu.activeSelf)
+        if (EquipmentPanel.activeSelf)
         {
             Time.timeScale = 1f;
             GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = true;
-            InventoryMenu.SetActive(false);
+            EquipmentPanel.SetActive(false);
 
         }
         else
@@ -21,51 +23,90 @@ public class InventoryManager : MonoBehaviour
             Time.timeScale = 0f;
             GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().isAbleToMove = false;
             DeselectAllSlots();
-            InventoryMenu.SetActive(true);
+            EquipmentPanel.SetActive(true);
         }
     }
 
     public bool UseItem(string itemName)
     {
-        foreach (var itemSO in itemSOs)
+        foreach (var item in consumables)
         {
-            if (itemSO.itemName == itemName)
+            if (item.itemName == itemName)
             {
-                bool usable = itemSO.UseItem();
+                bool usable = item.UseItem();
                 return usable;
             }
         }
         return false;
     }
 
-    public int AddItem(string itemName, int quantity, Sprite sprite, string itemDesciption, ItemType itemType)
+    public void AddItem(WeaponData weaponData)
     {
         foreach (var itemSlot in itemSlots)
         {
-            if (!itemSlot.isFull && itemSlot.name == itemName || itemSlot.quantity == 0)
+            if (!itemSlot.isFull && itemSlot.quantity == 0)
             {
-                int leftOverItems = itemSlot.AddItem(itemName, quantity, sprite, itemDesciption, itemType);
-                if (leftOverItems > 0) leftOverItems = AddItem(itemName, leftOverItems, sprite, itemDesciption, itemType);
+                itemSlot.AddItem(weaponData);
+                return;
+            } 
+        }
+    }
+    public void AddItem(EquipmentData equipmentData)
+    {
+        foreach (var itemSlot in itemSlots)
+        {
+            if (!itemSlot.isFull && itemSlot.quantity == 0)
+            {
+                itemSlot.AddItem(equipmentData);
+                return;
+            }
+        }
+    }
+    public int AddItem(StackableItemData stackableItemData, int leftOverItems)
+    {
+        foreach (var itemSlot in itemSlots)
+        {
+            if (!itemSlot.isFull && itemSlot.name == stackableItemData.itemName || itemSlot.quantity == 0)
+            {
+                leftOverItems = itemSlot.AddItem(stackableItemData);
+                if (leftOverItems > 0) leftOverItems = AddItem(stackableItemData, leftOverItems);
                 return leftOverItems;
             }
         }
-        return quantity;
+        return stackableItemData.quantity;
     }
 
     public void DeselectAllSlots()
     {
+        ItemInfoPanel.SetActive(false);
+        EquipmentInfoPanel.SetActive(false);
+        WeaponStatsContainer.SetActive(false);
+        ShieldStatsContainer.SetActive(false);
+
         foreach (var itemSlot in itemSlots)
         {
             itemSlot.selectedPanel.SetActive(false);
             itemSlot.itemSelected = false;
+            itemSlot.itemDescriptionNameText.text = null;
+            itemSlot.itemDescriptionText.text = null;
+        }
+
+        foreach (var equipmentSlot in equipmentSlots)
+        {
+            equipmentSlot.selectedPanel.SetActive(false);
+            equipmentSlot.itemSelected = false;
+            equipmentSlot.equipmentDescriptionNameText.text = null;
+            equipmentSlot.weaponMinAttackDamageText.text = null;
+            equipmentSlot.weaponMaxAttackDamageText.text = null;
+            equipmentSlot.shieldDefenseText.text = null;
         }
     }
 }
 
 public enum ItemType
 {
-    collectable,
+    stackable,
     weapon,
-    shield,
+    equipment,
     none
 };

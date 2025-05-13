@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7405ee4b0ec11eb44a27973c13c217ad, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: 694a8e13d97387a46863d881a6aa780b, type: 3}
+  m_Name: Holzschwert
   m_EditorClassIdentifier: 
-  itemName: Sword
-  itemType: 1
+  itemName: Holzschwert
+  itemSprite: {fileID: 1184895383, guid: fdb45501786aab745aff67b0da0d382a, type: 3}
   quantity: 1
-  sprite: {fileID: 1034063177, guid: fdb45501786aab745aff67b0da0d382a, type: 3}
-  itemDesciption: This is a sword. 5+ Attack.
-  statToChange: 2
-  amountToChangeStat: 5
+  itemType: 1
+  maxWeaponDamage: 15
+  minWeaponDamage: 5

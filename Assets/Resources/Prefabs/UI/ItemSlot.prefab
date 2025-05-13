@@ -380,9 +380,8 @@ MonoBehaviour:
   itemSprite: {fileID: 0}
   isFull: 0
   itemDescription: 
-  emptySprite: {fileID: 0}
-  itemType: 0
-  maxNumberOfItems: 9
+  itemType: 4
+  maxNumberOfItems: 100
   quantityTxt: {fileID: 4549260149985456588}
   itemImage: {fileID: 6500585194745770760}
   itemDescriptionNameText: {fileID: 0}

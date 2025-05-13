@@ -8,7 +8,8 @@ public class StatsSO : ScriptableObject
     public int maxHealth;
     public int currentHealth;
     public int defense;
-    public int attackDamage;
+    public int minAttackDamage;
+    public int maxAttackDamage;
     public int attackSpeed;
     public int attackRadius;
     public int movementSpeed;
