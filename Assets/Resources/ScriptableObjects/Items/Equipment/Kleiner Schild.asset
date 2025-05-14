@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34393bdeb2901b54193d363f38f0cbec, type: 3}
-  m_Name: Grosser Schild
+  m_Name: Kleiner Schild
   m_EditorClassIdentifier: 
-  itemName: Grosser Schild
-  itemSprite: {fileID: 21300000, guid: aaea244f6de3d414fad1fabd88c3ef0f, type: 3}
+  itemName: Kleiner Schild
+  itemSprite: {fileID: 21300000, guid: 3f094ac8dee5cfa4fbbfc4b822b0968c, type: 3}
   quantity: 1
+  sellingPrice: 5
   itemType: 2
-  defense: 20
+  itemHandling: One-Hand
+  defense: 5

@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Eisenerz
   itemSprite: {fileID: 21300000, guid: de20f767e3f3f4aff870112daa2b2562, type: 3}
   quantity: 10
+  sellingPrice: 10
   itemType: 0
   itemDescription: Kann zum verbessern von Waffen verwendet werden.

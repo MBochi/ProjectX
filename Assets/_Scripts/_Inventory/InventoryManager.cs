@@ -1,14 +1,22 @@
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class InventoryManager : MonoBehaviour
 {
     public GameObject EquipmentPanel, ItemInfoPanel, EquipmentInfoPanel, WeaponStatsContainer, ShieldStatsContainer, minAttackDamageTextContainer, minAttackDamageTextSeperatorContainer;
 
     public ItemSlot[] itemSlots;
-    public StackableItemData[] consumables;
     public EquipmentSlot[] equipmentSlots;
+    public List<StackableItemData> consumables;
+    public List<EquipmentData> equipment;
+    public List<WeaponData> weapons;
 
+    private void Awake()
+    {
+        consumables = new(Resources.LoadAll<StackableItemData>("ScriptableObjects/Items/Consumables"));
+        equipment = new(Resources.LoadAll<EquipmentData>("ScriptableObjects/Items/Equipment"));
+        weapons = new(Resources.LoadAll<WeaponData>("ScriptableObjects/Items/Weapons"));
+    }
     public void Inventory()
     {
         if (EquipmentPanel.activeSelf)

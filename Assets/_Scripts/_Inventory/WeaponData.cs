@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "New Weapon")]
 public class WeaponData : ItemData
 {
     public ItemType itemType = ItemType.weapon;
+    public string itemHandling = "One-Hand";
     public int maxWeaponDamage, minWeaponDamage;
 
     public void Equip()

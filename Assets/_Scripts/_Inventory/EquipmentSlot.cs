@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +12,9 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     public string itemName;
     public ItemType itemType;
     public string itemDescription;
+    public string itemHandling;
     public int minWeaponDamage, maxWeaponDamage, defense;
+    public int sellingPrice;
 
     public bool slotInUse;
 
@@ -21,17 +22,13 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
     public bool itemSelected;
 
     // Item description slot
-    public TMP_Text equipmentDescriptionNameText, weaponMinAttackDamageText, weaponMaxAttackDamageText, shieldDefenseText;
+    public TMP_Text equipmentDescriptionNameText, equipmentHandlingText, weaponMinAttackDamageText, weaponMaxAttackDamageText, shieldDefenseText, sellingPriceText;
 
     private InventoryManager inventoryManager;
-    private EquipmentLibrary equipmentLibrary;
-    private WeaponLibrary weaponLibrary;
 
     private void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
-        equipmentLibrary = GameObject.Find("InventoryCanvas").GetComponent<EquipmentLibrary>();
-        weaponLibrary = GameObject.Find("InventoryCanvas").GetComponent<WeaponLibrary>();
     }
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -55,6 +52,8 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         {
             inventoryManager.EquipmentInfoPanel.SetActive(true);
             equipmentDescriptionNameText.text = itemName;
+            equipmentHandlingText.text = itemHandling;
+            sellingPriceText.text = sellingPrice.ToString();
 
             if (this.itemType == ItemType.weapon)
             {
@@ -77,7 +76,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
             UnEquipGear();
         } 
     }
-    public void EquipWeapon(string itemName, Sprite itemSprite, ItemType itemType, int maxWeaponDamage, int minWeaponDamage)
+    public void EquipWeapon(string itemName, Sprite itemSprite, ItemType itemType, string itemHandling, int maxWeaponDamage, int minWeaponDamage, int sellingPrice)
     {
         this.itemName = itemName;
         this.itemSprite = itemSprite;
@@ -86,10 +85,12 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         slotName.enabled = false;
         this.itemType = itemType;
 
+        this.itemHandling = itemHandling;
         this.maxWeaponDamage = maxWeaponDamage;
         this.minWeaponDamage = minWeaponDamage;
+        this.sellingPrice = sellingPrice;   
 
-        foreach (var item in weaponLibrary.weapons)
+        foreach (var item in inventoryManager.weapons)
         {
             if (item.name == this.itemName)
                 item.Equip();
@@ -98,7 +99,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         slotInUse = true;
         inventoryManager.DeselectAllSlots();
     }
-    public void EquipGear(string itemName, Sprite itemSprite, ItemType itemType, int defense)
+    public void EquipGear(string itemName, Sprite itemSprite, ItemType itemType, string itemHandling, int defense, int sellingPrice)
     {    
         this.itemName = itemName;
         this.itemSprite = itemSprite;
@@ -107,9 +108,11 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         slotName.enabled = false;
         this.itemType = itemType;
 
+        this.itemHandling = itemHandling;
         this.defense = defense;
+        this.sellingPrice = sellingPrice;   
 
-        foreach (var item in equipmentLibrary.equipmentItems)
+        foreach (var item in inventoryManager.equipment)
         {
             if (item.name == this.itemName)
                 item.Equip();
@@ -127,8 +130,11 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 
             weaponSlotData.itemName = itemName;
             weaponSlotData.itemSprite = itemSprite;
+
+            weaponSlotData.itemHandling = itemHandling;
             weaponSlotData.maxWeaponDamage = maxWeaponDamage;
             weaponSlotData.minWeaponDamage = minWeaponDamage;
+            weaponSlotData.sellingPrice = sellingPrice;
 
             inventoryManager.AddItem(weaponSlotData);
         }
@@ -139,28 +145,35 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 
             equipmentSlotData.itemName = itemName;
             equipmentSlotData.itemSprite = itemSprite;
+
+            equipmentSlotData.itemHandling = itemHandling;
             equipmentSlotData.defense = defense;
+            equipmentSlotData.sellingPrice = sellingPrice;
 
             inventoryManager.AddItem(equipmentSlotData);
         }
 
         equipmentDescriptionNameText.text = "";
+        equipmentHandlingText.text = "";
         weaponMinAttackDamageText.text = "";
         weaponMaxAttackDamageText.text = "";
         shieldDefenseText.text = "";
+        sellingPriceText.text = "";
 
         itemSprite = null;
         slotImage.sprite = itemSprite;
         slotImage.enabled = false;
         slotName.enabled = true;
+        itemHandling = null;
         minWeaponDamage = 0;
         maxWeaponDamage = 0;
         defense = 0;
+        sellingPrice = 0;
         slotInUse = false;
 
         if (itemType == ItemType.weapon)
         {
-            foreach (var item in weaponLibrary.weapons)
+            foreach (var item in inventoryManager.weapons)
             {
                 if (item.name == this.itemName)
                     item.UnEquip();
@@ -168,7 +181,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
         }
         if (itemType == ItemType.equipment) 
         {
-            foreach (var item in equipmentLibrary.equipmentItems)
+            foreach (var item in inventoryManager.equipment)
             {
                 if (item.name == this.itemName)
                     item.UnEquip();

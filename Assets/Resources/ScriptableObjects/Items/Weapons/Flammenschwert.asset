@@ -15,6 +15,8 @@ MonoBehaviour:
   itemName: Flammenschwert
   itemSprite: {fileID: -1923404346, guid: fdb45501786aab745aff67b0da0d382a, type: 3}
   quantity: 1
+  sellingPrice: 50
   itemType: 1
+  itemHandling: One-Hand
   maxWeaponDamage: 76
   minWeaponDamage: 50

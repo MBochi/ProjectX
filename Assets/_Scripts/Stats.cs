@@ -1,7 +1,6 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class Stats : MonoBehaviour
 {   

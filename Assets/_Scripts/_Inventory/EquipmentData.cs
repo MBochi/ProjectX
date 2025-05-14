@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Equipment", menuName = "New Equipment")]
 public class EquipmentData : ItemData
 {
     public ItemType itemType = ItemType.equipment;
+    public string itemHandling = "One-Hand";
     public int defense;
 
     public void Equip()

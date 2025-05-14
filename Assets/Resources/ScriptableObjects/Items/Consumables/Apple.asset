@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Apple
   itemSprite: {fileID: 21300178, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
   quantity: 1
+  sellingPrice: 1
   itemType: 0
   itemDescription: This is an apple. It heals 5 health when consumed. An apple a
     day keeps the doctors away.
